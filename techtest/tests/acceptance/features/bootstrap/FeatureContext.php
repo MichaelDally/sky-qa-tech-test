@@ -13,6 +13,7 @@ require_once("Calculator.php");
 
 class FeatureContext extends BehatContext {
     protected $calculator;
+    protected $scientificCalculator;
 
     public function __construct() {
         $this->calculator = new Calculator();
@@ -45,6 +46,20 @@ class FeatureContext extends BehatContext {
     public function iHitEquals() {
         $this->calculator->pressEquals();
     }
+    
+     /**
+     * @When /^I hit "add"$/
+     */
+    public function iHitAdd() {
+        $this->calculator->pressAdd();
+    }
+    
+    /**
+     * @When /^I hit "subtract"$/
+     */
+    public function iHitSubtract() {
+        $this->calculator->pressSubtract();
+    }
 
     /**
      * @Then /^I see a result of "(\d+)"$/
@@ -55,4 +70,16 @@ class FeatureContext extends BehatContext {
             throw new Exception("Wrong result, actual is [$result]");
         }
     }
+    
+        /**
+     * @Given /^I multiply (\d+)\.(\d+) by (\d+)\.(\d+)$/
+     */
+    public function iMultiplyByMultipleNumbers($argument1, $argument2, $argument3, $argument4)
+    {
+    echo $argument1, $argument2, $argument3, $argument4;
+	iEnterIntoTheCalculator($argument1); 
+	iHitMultiply();
+	iEnterIntoTheCalculator($argument3);
+	iSeeAResultOf($argument4);
+	   }
 }

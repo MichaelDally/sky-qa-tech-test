@@ -1,6 +1,6 @@
 <?php
 
-class Calculator implements iCalculator {
+class Calculator implements iCalculator{
 
     protected $stack;
     protected $op;
@@ -9,6 +9,7 @@ class Calculator implements iCalculator {
     public function add($a, $b) {
         return ($a + $b);
     }
+    
 
     public function subtract($a, $b) {
         return ($a - $b);
